@@ -26,7 +26,7 @@ function getKey(key: number): string {
     case 5:
       return "F";
     case 6:
-      return "F / Gb";
+      return "F# / Gb";
     case 7:
       return "G";
     case 8:

@@ -1,6 +1,6 @@
 function TempoBox(props: any) {
     return (
-      <div className = "tempoBox">{props.tempo}BPM</div>
+      <div className = "tempoBox">{props.tempo} BPM</div>
     );
   }
   

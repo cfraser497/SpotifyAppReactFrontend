@@ -26,7 +26,6 @@ function App() {
   return (
     <div className="app">
       <h1>Spotify Playlist Tempo and Key Finder</h1>
-      <h6>Paste your spotify playlist link here</h6>
       <div className="search">
         <input
           value={playlistLink}
