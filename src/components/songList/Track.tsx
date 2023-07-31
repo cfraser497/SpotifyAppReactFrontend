@@ -3,6 +3,7 @@ import ImageBox from "./ImageBox";
 import KeyBox from "./KeyBox";
 import NameBox from "./NameBox";
 import TempoBox from "./TempoBox";
+import './Track.css';
 
 function Track(props: any) {
   return (

@@ -4,4 +4,4 @@ function ArtistsBox(props: any) {
     );
   }
   
-  export default ArtistsBox;
+export default ArtistsBox;

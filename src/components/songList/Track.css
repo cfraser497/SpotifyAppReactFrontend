@@ -1,0 +1,32 @@
+.imageBox {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    display: block;
+  }
+  
+  .nameBox {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  
+  .artistsBox {
+    grid-column: 2;
+    grid-row: 2;
+    color: rgb(249, 180, 124);
+    font-size: 0.8rem;
+    align-items: center;
+  
+  }
+  
+  .tempoBox {
+    text-align: right;
+    grid-column: 3;
+    grid-row: 1;
+  }
+  
+  .keyBox {
+    text-align: right;
+    grid-column: 3;
+    grid-row: 2;
+  }
+  

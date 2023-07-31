@@ -4,4 +4,4 @@ function ImageBox(props: any) {
     );
   }
   
-  export default ImageBox;
+export default ImageBox;
