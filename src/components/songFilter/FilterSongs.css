@@ -6,6 +6,14 @@
     -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
     box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
   }
+
+  .keyDropdown {
+    margin-right: 1rem;
+    background-color: #1c1d1f;
+    color: #cdcdcd;
+    border: none;
+    cursor: pointer;
+  }
   
   .keyLabel {
     padding-right: 1rem;
