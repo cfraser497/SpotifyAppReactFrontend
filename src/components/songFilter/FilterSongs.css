@@ -5,6 +5,12 @@
     background: #1f2123;
     -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
     box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .filterPair {
+    display: inline-block;
   }
 
   .keyDropdown {
@@ -22,4 +28,19 @@
     font-size: 1rem;
     font-family: var(--font-raleway);
     font-weight: 500;
+  }
+
+  .filterInput {
+    margin-right: 1rem;
+    background-color: #1c1d1f;
+    color: #cdcdcd;
+    border: none;
+    width: 2.1rem;
+  }
+
+  .filterInputRight {
+    background-color: #1c1d1f;
+    color: #cdcdcd;
+    border: none;
+    width: 2.1rem;
   }

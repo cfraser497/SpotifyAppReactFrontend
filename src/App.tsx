@@ -11,11 +11,14 @@ function App() {
   const [tracks, setTracks] = useState([]);
   const [filterKeyValue, setFilterKeyValue] = useState("-1");
   const [filterModeValue, setFilterModeValue] = useState("-1");
+  const [filterMinTempo, setFilterMinTempo] = useState("");
+  const [filterMaxTempo, setFilterMaxTempo] = useState("");
 
   const getSongs = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:3000/", {
+      // .post("http://localhost:8080/", {
+      .post("https://spotify-playlist-tempo-and-key.uw.r.appspot.com/", {
         playlistId: extractPlaylistId(playlistLink),
       })
       .then((res) => {
@@ -33,6 +36,17 @@ function App() {
   function onFilterValueSelected(filterKeyValue: string) {
     setFilterKeyValue(filterKeyValue);
   }
+
+  function onFilterMinTempoSelected(filterMinTempoValue: string) {
+    setFilterMinTempo(filterMinTempoValue);
+  }
+
+  function onFilterMaxTempoSelected(filterMaxTempoValue: string) {
+    console.log(filterMaxTempoValue);
+    setFilterMaxTempo(filterMaxTempoValue);
+  }
+
+
 
   let filteredTracks = tracks.filter((track) => {
     switch (filterKeyValue) {
@@ -74,7 +88,11 @@ function App() {
         return track.mode === 1;
     }
     return false;
-  });
+  }).filter((track) => {
+    return filterMinTempo == "" || track.tempo >= filterMinTempo;
+  }).filter((track) => {
+    return filterMaxTempo == "" || track.tempo <= filterMaxTempo;
+  })
 
   return (
     <div className="app">
@@ -87,7 +105,13 @@ function App() {
         />
         <img src={SearchIcon} alt="search" onClick={getSongs} />
       </div>
-      <FilterSongs filterKeyValueSelected={onFilterValueSelected} filterModeValueSelected={onFilterModeValueSelected}></FilterSongs>
+      <FilterSongs 
+        filterKeyValueSelected={onFilterValueSelected} 
+        filterModeValueSelected={onFilterModeValueSelected} 
+        filterMinTempoSelected={onFilterMinTempoSelected}
+        filterMaxTempoSelected={onFilterMaxTempoSelected}
+      >
+      </FilterSongs>
       <ul id="songlist">
         {filteredTracks.map((track) => (
           <Track track={track} />
