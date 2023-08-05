@@ -5,6 +5,7 @@ import "./App.css";
 import { extractPlaylistId } from "./utils";
 import Track from "./components/songList/Track";
 import FilterSongs from "./components/songFilter/FilterSongs";
+import RecommendedSongs from "./components/recommendedList/RecommendedSongs"
 import { ClipLoader } from "react-spinners";
 
 function App() {
@@ -48,7 +49,6 @@ function App() {
   }
 
   function onFilterMaxTempoSelected(filterMaxTempoValue: string) {
-    console.log(filterMaxTempoValue);
     setFilterMaxTempo(filterMaxTempoValue);
   }
 
@@ -109,7 +109,7 @@ function App() {
         />
         {!loading ?
         <img src={SearchIcon} alt="search" onClick={getSongs} /> :
-        <ClipLoader color={"#D88769"} loading={loading} size={30}/>
+        <ClipLoader color={"#D88769"} loading={loading}/>
       }
       </div>
       <FilterSongs 
@@ -119,11 +119,14 @@ function App() {
         filterMaxTempoSelected={onFilterMaxTempoSelected}
       >
       </FilterSongs>
+      <div className="trackBox">
+      <RecommendedSongs filteredTracks = {filteredTracks} />
       <ul id="songlist">
         {filteredTracks.map((track) => (
-          <Track track={track} />
+          <Track key={track.id} track={track} />
         ))}
       </ul>
+      </div>
     </div>
   );
 }

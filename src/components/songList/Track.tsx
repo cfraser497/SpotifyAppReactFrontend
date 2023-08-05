@@ -7,7 +7,7 @@ import './Track.css';
 
 function Track(props: any) {
   return (
-    <li key={props.track.name}>
+    <li>
       <ImageBox url={props.track.image} />
       <NameBox name={props.track.name} />
       <ArtistsBox artists={props.track.artists} />
