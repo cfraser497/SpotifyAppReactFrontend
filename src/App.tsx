@@ -5,6 +5,7 @@ import "./App.css";
 import { extractPlaylistId } from "./utils";
 import Track from "./components/songList/Track";
 import FilterSongs from "./components/songFilter/FilterSongs";
+import { ClipLoader } from "react-spinners";
 
 function App() {
   const [playlistLink, setPlaylistLink] = useState("");
@@ -13,9 +14,11 @@ function App() {
   const [filterModeValue, setFilterModeValue] = useState("-1");
   const [filterMinTempo, setFilterMinTempo] = useState("");
   const [filterMaxTempo, setFilterMaxTempo] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const getSongs = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    setLoading(true);
     await axios
       // .post("http://localhost:8080/", {
       .post("https://spotify-playlist-tempo-and-key.uw.r.appspot.com/", {
@@ -26,6 +29,9 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -45,8 +51,6 @@ function App() {
     console.log(filterMaxTempoValue);
     setFilterMaxTempo(filterMaxTempoValue);
   }
-
-
 
   let filteredTracks = tracks.filter((track) => {
     switch (filterKeyValue) {
@@ -103,7 +107,10 @@ function App() {
           placeholder="eg. https://open.spotify.com/playlist/2tLLUTRINF4zBnkDBXuisf"
           onChange={(e) => setPlaylistLink(e.target.value)}
         />
-        <img src={SearchIcon} alt="search" onClick={getSongs} />
+        {!loading ?
+        <img src={SearchIcon} alt="search" onClick={getSongs} /> :
+        <ClipLoader color={"#D88769"} loading={loading} size={30}/>
+      }
       </div>
       <FilterSongs 
         filterKeyValueSelected={onFilterValueSelected} 
