@@ -42,12 +42,36 @@ h1 {
   text-align: center;
 }
 
-ul {
-  list-style-type: none;
+.trackBox {
+  display: grid;
+  grid-template-columns: 6% 41% 6% 41% 6%;
+  grid-template-rows: auto;
   width: 100%;
-  max-width: 40rem;
-  padding-left: 0px;
-  margin-left: -30px;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .trackBox {
+    flex-direction: column;
+    align-items: center;
+  }  
+}
+
+.allTracksTitle {
+  color:rgb(249, 180, 124);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.allTracksBox {
+  grid-column: 4; 
+}
+
+.songlist {
+  width: 100%;
+  max-width: 41rem;
+  margin: 0%;
+  padding: 0%;
 }
 
 li {

@@ -108,9 +108,9 @@ function App() {
           onChange={(e) => setPlaylistLink(e.target.value)}
         />
         {!loading ?
-        <img src={SearchIcon} alt="search" onClick={getSongs} /> :
-        <ClipLoader color={"#D88769"} loading={loading}/>
-      }
+          <img src={SearchIcon} alt="search" onClick={getSongs} /> :
+          <ClipLoader color={"#D88769"} loading={loading}/>
+        }
       </div>
       <FilterSongs 
         filterKeyValueSelected={onFilterValueSelected} 
@@ -120,12 +120,15 @@ function App() {
       >
       </FilterSongs>
       <div className="trackBox">
-      <RecommendedSongs filteredTracks = {filteredTracks} />
-      <ul id="songlist">
-        {filteredTracks.map((track) => (
-          <Track key={track.id} track={track} />
-        ))}
-      </ul>
+        <RecommendedSongs filteredTracks = {filteredTracks} />
+        <div className="allTracksBox">
+          <h4 className="allTracksTitle">All Tracks</h4>
+          <ul className="songlist">
+            {filteredTracks.map((track) => (
+              <Track key={track.id} track={track} />
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
