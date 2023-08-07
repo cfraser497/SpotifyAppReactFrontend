@@ -3,10 +3,10 @@ import { useState } from "react";
 import SearchIcon from "./assets/search.svg";
 import "./App.css";
 import { extractPlaylistId } from "./utils";
-import Track from "./components/songList/Track";
 import FilterSongs from "./components/songFilter/FilterSongs";
 import RecommendedSongs from "./components/recommendedList/RecommendedSongs"
 import { ClipLoader } from "react-spinners";
+import AllTracksBox from "./components/allTracksBox/AllTracksBox";
 
 function App() {
   const [playlistLink, setPlaylistLink] = useState("");
@@ -121,14 +121,7 @@ function App() {
       </FilterSongs>
       <div className="trackBox">
         <RecommendedSongs filteredTracks = {filteredTracks} />
-        <div className="allTracksBox">
-          <h4 className="allTracksTitle">All Tracks</h4>
-          <ul className="songlist">
-            {filteredTracks.map((track) => (
-              <Track key={track.id} track={track} />
-            ))}
-          </ul>
-        </div>
+        <AllTracksBox filteredTracks = {filteredTracks} />
       </div>
     </div>
   );
