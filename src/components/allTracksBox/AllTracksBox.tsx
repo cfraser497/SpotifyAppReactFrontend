@@ -1,4 +1,5 @@
 import Track from "./songList/Track";
+import "./AllTracksBox.css"
 
 function AllTracksBox(props) {
   return (

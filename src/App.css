@@ -57,23 +57,6 @@ h1 {
   }  
 }
 
-.allTracksTitle {
-  color:rgb(249, 180, 124);
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.allTracksBox {
-  grid-column: 4; 
-}
-
-.songlist {
-  width: 100%;
-  max-width: 41rem;
-  margin: 0%;
-  padding: 0%;
-}
-
 li {
   margin: 0 0 1rem;
 
