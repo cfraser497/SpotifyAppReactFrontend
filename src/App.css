@@ -52,6 +52,7 @@ h1 {
 
 @media (max-width: 600px) {
   .trackBox {
+    display: block;
     flex-direction: column;
     align-items: center;
   }  
