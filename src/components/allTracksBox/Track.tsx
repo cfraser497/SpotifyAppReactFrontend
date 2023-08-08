@@ -4,6 +4,7 @@ import KeyBox from "../trackComponents/KeyBox";
 import NameBox from "../trackComponents/NameBox";
 import TempoBox from "../trackComponents/TempoBox";
 import './Track.css';
+import '../trackComponents/TrackComponents.css'
 
 function Track(props: any) {
   return (

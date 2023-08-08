@@ -1,20 +1,15 @@
 .imageBox {
+  display: block;
   grid-column: 1;
   grid-row: 1 / 3;
-  display: block;
-}
-
-.nameBox {
-  grid-column: 2;
-  grid-row: 1;
 }
 
 .artistsBox {
-  grid-column: 2;
-  grid-row: 2;
   color: rgb(249, 180, 124);
   font-size: 0.8rem;
   align-items: center;
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .tempoBox {
@@ -27,4 +22,40 @@
   text-align: right;
   grid-column: 3;
   grid-row: 2;
+}
+
+.nameBox {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.imageBoxBottom {
+  display: block;
+  grid-column: 1;
+  grid-row: 4 / 6;
+}
+
+.artistsBoxBottom {
+  color: rgb(249, 180, 124);
+  font-size: 0.8rem;
+  align-items: center;
+  grid-column: 2;
+  grid-row: 5;
+}
+
+.tempoBoxBottom {
+  text-align: right;
+  grid-column: 3;
+  grid-row: 4;
+}
+
+.keyBoxBottom {
+  text-align: right;
+  grid-column: 3;
+  grid-row: 5;
+}
+
+.nameBoxBottom {
+  grid-column: 2;
+  grid-row: 4;
 }

@@ -1,3 +1,4 @@
+import RecommendedPair from "./RecommendedPair";
 import "./RecommendedSongs.css";
 
 function RecommendedSongs(props: any) {
@@ -22,7 +23,7 @@ function RecommendedSongs(props: any) {
       <h4 className="recommendedTitle">Recommended Mixes</h4>
       <ul className="recommendedList">
         {createRecommendations(props.filteredTracks).map((trackPair) => (
-          <li key={trackPair.track1.id}>{trackPair.track1.name} and {trackPair.track2.name}</li>
+          <RecommendedPair key={`${trackPair.track1.name}${trackPair.track2.name}`} track1={trackPair.track1} track2={trackPair.track2}/>
         ))}
       </ul>
     </div>
