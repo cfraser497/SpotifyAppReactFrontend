@@ -1,13 +1,13 @@
-import ArtistsBox from "./ArtistsBox";
-import ImageBox from "./ImageBox";
-import KeyBox from "./KeyBox";
-import NameBox from "./NameBox";
-import TempoBox from "./TempoBox";
+import ArtistsBox from "../trackComponents/ArtistsBox";
+import ImageBox from "../trackComponents/ImageBox";
+import KeyBox from "../trackComponents/KeyBox";
+import NameBox from "../trackComponents/NameBox";
+import TempoBox from "../trackComponents/TempoBox";
 import './Track.css';
 
 function Track(props: any) {
   return (
-    <li>
+    <li className = "track">
       <ImageBox url={props.track.image} />
       <NameBox name={props.track.name} />
       <ArtistsBox artists={props.track.artists} />
