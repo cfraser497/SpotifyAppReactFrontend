@@ -21,8 +21,8 @@ function App() {
     e.preventDefault();
     setLoading(true);
     await axios
-      // .post("http://localhost:8080/", {
-      .post("https://spotify-playlist-tempo-and-key.uw.r.appspot.com/", {
+      .post("http://localhost:8080/", {
+      // .post("https://spotify-playlist-tempo-and-key.uw.r.appspot.com/", {
         playlistId: extractPlaylistId(playlistLink),
       })
       .then((res) => {
