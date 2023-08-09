@@ -8,6 +8,7 @@ import ImageBox2 from "../trackComponents/ImageBox2";
 import KeyBox2 from "../trackComponents/KeyBox2";
 import NameBox2 from "../trackComponents/NameBox2";
 import TempoBox2 from "../trackComponents/TempoBox2";
+import ScoreBox from "./ScoreBox";
 import "./RecommendedPair.css"
 
 function RecommendedPair(props) {
@@ -23,6 +24,7 @@ function RecommendedPair(props) {
       <ArtistsBox2 artists={props.track2.artists} />
       <TempoBox2 tempo={props.track2.tempo} />
       <KeyBox2 mode={props.track2.mode} songKey={props.track2.key} />
+      <ScoreBox score={props.score} />
     </li>
   );
 }
