@@ -6,7 +6,7 @@ const keyWeight = 3;
 const tempoWeight = 1;
 const genreWeight = 5;
 const defaultGenres = 3;
-const sameArtistPenalty = 0.8;
+//const sameArtistPenalty = 0.8;
 const tempoDiff = 4;
 const keyDiff = 1;
 
@@ -20,12 +20,12 @@ function RecommendedSongs(props: any) {
 
     const initialScore = genreWeight * track1Genres.filter(genre => track2Genres.includes(genre)).length;
 
-    const track1Artist = track1.artists.split(",")[0]
-    const track2Artist = track2.artists.split(",")[0]
+    // const track1Artist = track1.artists.split(",")[0]
+    // const track2Artist = track2.artists.split(",")[0]
     //penantly if songs are by same artist as all genres will allign perfectly
-    if (track1Artist == track2Artist) {
-      return genreMaxScore - Math.min(genreMaxScore, Math.floor(sameArtistPenalty * initialScore));
-    }
+    // if (track1Artist == track2Artist) {
+    //   return genreMaxScore - Math.min(genreMaxScore, Math.floor(sameArtistPenalty * initialScore));
+    // }
     return genreMaxScore - Math.min(genreMaxScore, initialScore);
   }
 
@@ -33,7 +33,7 @@ function RecommendedSongs(props: any) {
     const tempoScore = tempoWeight * Math.abs(track1.tempo - track2.tempo);
     const keyScore = keyWeight * Math.abs(track1.key - track2.key);
     const genreScore = calculateGenreScore(track1, track2);
-    //console.log(track1.name + " " + track1.genres + "\n" + track2.name + " " + track2.genres + ": " + genreScore);
+    // console.log(track1.name + " " + track1.genres + "\n" + track2.name + " " + track2.genres + ": " + (maxScore - tempoScore - keyScore - genreScore));
     return maxScore - tempoScore - keyScore - genreScore;
   }
 

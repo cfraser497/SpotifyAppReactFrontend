@@ -76,6 +76,10 @@ li {
   font-weight: 500;
 }
 
+li:hover {
+  background: #1a1b1d;
+}
+
 .search {
   width: 100%;
   max-width: 55rem;
