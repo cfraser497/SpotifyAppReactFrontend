@@ -25,6 +25,8 @@ function RecommendedPair(props) {
       <TempoBox2 tempo={props.track2.tempo} />
       <KeyBox2 mode={props.track2.mode} songKey={props.track2.key} />
       <ScoreBox score={props.score} />
+      {/* <div>{props.track1.genres}</div>
+      <div>{props.track2.genres}</div> */}
     </li>
   );
 }
