@@ -74,10 +74,13 @@ li {
   font-size: 1rem;
   font-family: var(--font-raleway);
   font-weight: 500;
+
+  transition: .2s;
 }
 
 li:hover {
   background: #1a1b1d;
+  transform: scale(1.05);
 }
 
 .search {
