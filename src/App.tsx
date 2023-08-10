@@ -16,20 +16,23 @@ function App() {
   const [filterMinTempo, setFilterMinTempo] = useState("");
   const [filterMaxTempo, setFilterMaxTempo] = useState("");
   const [loading, setLoading] = useState(false);
+  const [invalidLink, setInvalidLink] = useState(false);
 
   const getSongs = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    setInvalidLink(false);
     setLoading(true);
     await axios
       .post("http://localhost:8080/", {
-      // .post("https://spotify-playlist-tempo-and-key.uw.r.appspot.com/", {
+        // .post("https://spotify-playlist-tempo-and-key.uw.r.appspot.com/", {
         playlistId: extractPlaylistId(playlistLink),
       })
       .then((res) => {
+        console.log("made it 2");
         setTracks(res.data.tracks);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setInvalidLink(true);
       })
       .finally(() => {
         setLoading(false);
@@ -117,6 +120,9 @@ function App() {
           <ClipLoader color={"#D88769"} loading={loading} />
         )}
       </div>
+      {invalidLink ? (
+        <div className="errorText">Invalid Playlist Link</div>
+      ) : null}
       <FilterSongs
         filterKeyValueSelected={onFilterValueSelected}
         filterModeValueSelected={onFilterModeValueSelected}
@@ -128,9 +134,7 @@ function App() {
           <RecommendedSongs filteredTracks={filteredTracks} />
           <AllTracksBox filteredTracks={filteredTracks} />
         </div>
-      ) : (
-        <div></div>
-      )}
+      ) : null}
     </div>
   );
 }

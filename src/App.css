@@ -117,3 +117,13 @@ li:hover {
   height: 30px;
   cursor: pointer;
 }
+
+.errorText {
+  font-size: 1.2rem;
+  letter-spacing: 0.9px;
+  color:rgb(245, 77, 72);
+
+  margin-bottom: 1rem;
+  width: fit-content;
+  text-align: center;
+}
