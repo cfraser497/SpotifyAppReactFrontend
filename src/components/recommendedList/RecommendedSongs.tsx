@@ -41,8 +41,8 @@ function RecommendedSongs(props: any) {
     const recommendations = [];
 
     //compare every track to every other track
-    for (let i = 0; i < filteredTracks.length - 2; i++) {
-      for (let j = i + 1; j < filteredTracks.length - 1; j++) {
+    for (let i = 0; i < filteredTracks.length - 1; i++) {
+      for (let j = i + 1; j < filteredTracks.length; j++) {
         let track1 = filteredTracks[i];
         let track2 = filteredTracks[j];
         if (
