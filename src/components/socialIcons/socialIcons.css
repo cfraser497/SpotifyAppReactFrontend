@@ -14,7 +14,6 @@
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  transition: 0.2s;
 }
 
 @media (max-width: 1400px) {
@@ -26,7 +25,10 @@
     }
 }
 
-.socialIconsBox:hover {
-  background: #1a1b1d;
-  transform: scale(1.05);
+.socialIcon {
+  transition: 0.2s;
+}
+
+.socialIcon:hover{
+  transform: scale(1.1);
 }
