@@ -118,7 +118,7 @@ function App() {
         {!loading ? (
           <img src={SearchIcon} alt="search" onClick={getSongs} />
         ) : (
-          <ClipLoader color={"#D88769"} loading={loading} />
+          <ClipLoader color={"#D88769"} loading={loading} size={30}/>
         )}
       </div>
       {invalidLink ? (
