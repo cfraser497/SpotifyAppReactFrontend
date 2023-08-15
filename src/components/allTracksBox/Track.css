@@ -1,5 +1,12 @@
 .track {
     display: grid;
-    grid-template-columns: 80px 1fr calc(50px + 6vw);
+    grid-template-columns: 80px 1fr calc(50px + 6vw) 30px;
     grid-template-rows: 60% 40%;
+}
+
+input.checkbox {
+    grid-row: 1/3;
+    grid-column: 4;
+    width: 50px;
+    height: 20px;
 }

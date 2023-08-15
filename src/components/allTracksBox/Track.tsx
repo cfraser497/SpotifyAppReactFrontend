@@ -14,6 +14,7 @@ function Track(props: any) {
       <ArtistsBox artists={props.track.artists} />
       <TempoBox tempo={props.track.tempo} />
       <KeyBox mode={props.track.mode} songKey={props.track.key} />
+      <input type="checkbox" className="checkbox"/>
     </li>
   );
 }

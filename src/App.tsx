@@ -7,6 +7,7 @@ import FilterSongs from "./components/songFilter/FilterSongs";
 import RecommendedSongs from "./components/recommendedList/RecommendedSongs";
 import { ClipLoader } from "react-spinners";
 import AllTracksBox from "./components/allTracksBox/AllTracksBox";
+import SocialIcons from "./components/socialIcons/socialIcons";
 
 function App() {
   const [playlistLink, setPlaylistLink] = useState("");
@@ -28,7 +29,6 @@ function App() {
         playlistId: extractPlaylistId(playlistLink),
       })
       .then((res) => {
-        console.log("made it 2");
         setTracks(res.data.tracks);
       })
       .catch(() => {
@@ -108,10 +108,11 @@ function App() {
   return (
     <div className="app">
       <h1>Spotify Playlist Tempo and Key Finder</h1>
+      <SocialIcons />
       <div className="search">
         <input
           value={playlistLink}
-          placeholder="eg. https://open.spotify.com/playlist/2tLLUTRINF4zBnkDBXuisf"
+          placeholder="Paste your Spotify playlist link here"
           onChange={(e) => setPlaylistLink(e.target.value)}
         />
         {!loading ? (
@@ -123,17 +124,19 @@ function App() {
       {invalidLink ? (
         <div className="errorText">Invalid Playlist Link</div>
       ) : null}
-      <FilterSongs
-        filterKeyValueSelected={onFilterValueSelected}
-        filterModeValueSelected={onFilterModeValueSelected}
-        filterMinTempoSelected={onFilterMinTempoSelected}
-        filterMaxTempoSelected={onFilterMaxTempoSelected}
-      ></FilterSongs>
       {tracks.length ? (
-        <div className="trackBox">
-          <RecommendedSongs filteredTracks={filteredTracks} />
-          <AllTracksBox filteredTracks={filteredTracks} />
-        </div>
+        <>
+          <FilterSongs
+            filterKeyValueSelected={onFilterValueSelected}
+            filterModeValueSelected={onFilterModeValueSelected}
+            filterMinTempoSelected={onFilterMinTempoSelected}
+            filterMaxTempoSelected={onFilterMaxTempoSelected}
+          ></FilterSongs>
+          <div className="trackBox">
+            <RecommendedSongs filteredTracks={filteredTracks} />
+            <AllTracksBox filteredTracks={filteredTracks} />
+          </div>
+        </>
       ) : null}
     </div>
   );
