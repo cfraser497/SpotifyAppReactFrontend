@@ -80,8 +80,8 @@ function RecommendedSongs(props: any) {
           ) {
             let score = calculateScore(track1, checkedTrack);
             recommendations.push({
-              track1: track1,
-              track2: checkedTrack,
+              track1: checkedTrack,
+              track2: track1,
               score: score,
             });
           }
