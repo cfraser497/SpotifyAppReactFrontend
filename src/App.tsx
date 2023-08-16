@@ -11,7 +11,8 @@ import SocialIcons from "./components/socialIcons/socialIcons";
 
 function App() {
   const [playlistLink, setPlaylistLink] = useState("");
-  const [tracks, setTracks] = useState([]);
+  const [tracks, setTracks] = useState(new Map());
+  const [checkedTrack, setCheckedTrack] = useState("");
   const [filterKeyValue, setFilterKeyValue] = useState("-1");
   const [filterModeValue, setFilterModeValue] = useState("-1");
   const [filterMinTempo, setFilterMinTempo] = useState("");
@@ -28,8 +29,14 @@ function App() {
         // .post("https://spotify-playlist-tempo-and-key.uw.r.appspot.com/", {
         playlistId: extractPlaylistId(playlistLink),
       })
-      .then((res) => {
-        setTracks(res.data.tracks);
+      .then(({ data }) => {
+        const tracksMap = new Map(
+          data.tracks.map((track) => [
+            track.id,
+            { track: track, checked: false },
+          ])
+        );
+        setTracks(tracksMap);
       })
       .catch(() => {
         setInvalidLink(true);
@@ -38,6 +45,21 @@ function App() {
         setLoading(false);
       });
   };
+
+  function handleChecked(event) {
+    const id = event.target.value;
+    const { track, checked } = tracks.get(id);
+    const oldTrackAllData = tracks.get(checkedTrack);
+
+    if (oldTrackAllData) {
+      const oldTrack = oldTrackAllData.track;
+      tracks.set(checkedTrack, { track: oldTrack, checked: false });
+    }
+
+    tracks.set(id, { track: track, checked: !checked });
+
+    setCheckedTrack(checked ? "" : id);
+  }
 
   function onFilterModeValueSelected(filterModeValue: string) {
     setFilterModeValue(filterModeValue);
@@ -55,8 +77,8 @@ function App() {
     setFilterMaxTempo(filterMaxTempoValue);
   }
 
-  let filteredTracks = tracks
-    .filter((track) => {
+  let filteredTracks = Array.from(tracks.values())
+    .filter(({ track }) => {
       switch (filterKeyValue) {
         case "-1":
           return true;
@@ -87,7 +109,7 @@ function App() {
       }
       return false;
     })
-    .filter((track) => {
+    .filter(({ track }) => {
       switch (filterModeValue) {
         case "-1":
           return true;
@@ -98,10 +120,10 @@ function App() {
       }
       return false;
     })
-    .filter((track) => {
+    .filter(({ track }) => {
       return filterMinTempo == "" || track.tempo >= filterMinTempo;
     })
-    .filter((track) => {
+    .filter(({ track }) => {
       return filterMaxTempo == "" || track.tempo <= filterMaxTempo;
     });
 
@@ -118,13 +140,13 @@ function App() {
         {!loading ? (
           <img src={SearchIcon} alt="search" onClick={getSongs} />
         ) : (
-          <ClipLoader color={"#D88769"} loading={loading} size={30}/>
+          <ClipLoader color={"#D88769"} loading={loading} size={30} />
         )}
       </div>
       {invalidLink ? (
         <div className="errorText">Invalid Playlist Link</div>
       ) : null}
-      {tracks.length ? (
+      {tracks.size ? (
         <>
           <FilterSongs
             filterKeyValueSelected={onFilterValueSelected}
@@ -133,8 +155,16 @@ function App() {
             filterMaxTempoSelected={onFilterMaxTempoSelected}
           ></FilterSongs>
           <div className="trackBox">
-            <RecommendedSongs filteredTracks={filteredTracks} />
-            <AllTracksBox filteredTracks={filteredTracks} />
+            <RecommendedSongs
+              filteredTracks={filteredTracks}
+              checkedTrack={
+                checkedTrack == "" ? "" : tracks.get(checkedTrack).track
+              }
+            />
+            <AllTracksBox
+              filteredTracks={filteredTracks}
+              handleChecked={handleChecked}
+            />
           </div>
         </>
       ) : null}

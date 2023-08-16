@@ -6,8 +6,8 @@ function AllTracksBox(props) {
     <div className="allTracksBox">
       <h4 className="allTracksTitle">All Tracks</h4>
       <ul className="songlist">
-        {props.filteredTracks.map((track) => (
-          <Track key={track.id} track={track} />
+        {props.filteredTracks.map(({track, checked}) => (
+          <Track key={track.id} track={track} checked={checked} handleChecked={props.handleChecked}/>
         ))}
       </ul>
     </div>
