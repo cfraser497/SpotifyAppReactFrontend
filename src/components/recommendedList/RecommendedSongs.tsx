@@ -70,22 +70,17 @@ function RecommendedSongs(props: any) {
         }
       }
     } else {
-        for (let i = 0; i < filteredTracks.length; i++) {
-          let track1 = filteredTracks[i];
-          if (
-            track1.id != checkedTrack.id &&
-            Math.abs(track1.key - checkedTrack.key) <= keyDiff &&
-            Math.abs(track1.tempo - checkedTrack.tempo) <= tempoDiff &&
-            track1.mode == checkedTrack.mode
-          ) {
-            let score = calculateScore(track1, checkedTrack);
-            recommendations.push({
-              track1: checkedTrack,
-              track2: track1,
-              score: score,
-            });
-          }
+      for (let i = 0; i < filteredTracks.length; i++) {
+        let track1 = filteredTracks[i];
+        if (track1.id != checkedTrack.id) {
+          let score = calculateScore(track1, checkedTrack);
+          recommendations.push({
+            track1: checkedTrack,
+            track2: track1,
+            score: score,
+          });
         }
+      }
     }
 
     return recommendations;
@@ -96,9 +91,10 @@ function RecommendedSongs(props: any) {
       <h4 className="recommendedTitle">Recommended Mixes</h4>
       <ul className="recommendedList">
         {createRecommendations(
-          props.filteredTracks.map(({track}) => {
+          props.filteredTracks.map(({ track }) => {
             return track;
-          }), props.checkedTrack
+          }),
+          props.checkedTrack
         )
           .sort((track1, track2) => track2.score - track1.score)
           .slice(0, props.filteredTracks.length / 1.8)
