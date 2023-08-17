@@ -1,5 +1,5 @@
 .recommendedPair {
   display: grid;
   grid-template-columns: 80px 1fr calc(50px + 6vw);
-  grid-template-rows: 25% 16% 6% 25% 16% 6% 1fr;
+  grid-template-rows: 1fr 16% 6% 1fr 16% 6% 6%;
 }
