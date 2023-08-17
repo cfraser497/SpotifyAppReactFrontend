@@ -10,6 +10,7 @@ const defaultGenres = 2;
 //const sameArtistPenalty = 0.8;
 const tempoDiff = 6;
 const keyDiff = 2;
+const diffModePenalty = 30;
 
 function RecommendedSongs(props: any) {
 
@@ -37,7 +38,7 @@ function RecommendedSongs(props: any) {
   ): number {
     const tempoScore = tempoWeight * Math.abs(track1.tempo - track2.tempo);
     const keyScore = keyWeight ** Math.abs(track1.key - track2.key) - 1; //0 -> 0; 1 -> keyweight - 1; 2 -> keyweight^2 - 1
-    const modeScore = track1.mode == track2.mode ? 0 : 30;
+    const modeScore = track1.mode == track2.mode ? 0 : diffModePenalty;
     const genreScore = calculateGenreScore(track1, track2);
     const energyScore = Math.round(energyWeight * 10 * Math.abs(track1.energy - track2.energy));
 
