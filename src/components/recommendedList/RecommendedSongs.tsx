@@ -2,14 +2,14 @@ import RecommendedPair from "./RecommendedPair";
 import "./RecommendedSongs.css";
 
 const maxScore = 100;
-const keyWeight = 3;
+const keyWeight = 4;
 const tempoWeight = 1;
 const genreWeight = 5;
 const energyWeight = 2;
-const defaultGenres = 3;
+const defaultGenres = 2;
 //const sameArtistPenalty = 0.8;
-const tempoDiff = 4;
-const keyDiff = 1;
+const tempoDiff = 6;
+const keyDiff = 2;
 
 function RecommendedSongs(props: any) {
 
@@ -28,12 +28,6 @@ function RecommendedSongs(props: any) {
       genreWeight *
       track1Genres.filter((genre) => track2Genres.includes(genre)).length;
 
-    // const track1Artist = track1.artists.split(",")[0]
-    // const track2Artist = track2.artists.split(",")[0]
-    //penantly if songs are by same artist as all genres will allign perfectly
-    // if (track1Artist == track2Artist) {
-    //   return genreMaxScore - Math.min(genreMaxScore, Math.floor(sameArtistPenalty * initialScore));
-    // }
     return genreMaxScore - Math.min(genreMaxScore, initialScore);
   }
 
@@ -42,7 +36,7 @@ function RecommendedSongs(props: any) {
     track2: { name: string; tempo: number; key: number; genres: string[]; mode: number, energy: number }
   ): number {
     const tempoScore = tempoWeight * Math.abs(track1.tempo - track2.tempo);
-    const keyScore = keyWeight * Math.abs(track1.key - track2.key);
+    const keyScore = keyWeight ** Math.abs(track1.key - track2.key) - 1; //0 -> 0; 1 -> keyweight - 1; 2 -> keyweight^2 - 1
     const modeScore = track1.mode == track2.mode ? 0 : 30;
     const genreScore = calculateGenreScore(track1, track2);
     const energyScore = Math.round(energyWeight * 10 * Math.abs(track1.energy - track2.energy));
@@ -76,7 +70,7 @@ function RecommendedSongs(props: any) {
     } else {
       for (let i = 0; i < filteredTracks.length; i++) {
         let track1 = filteredTracks[i];
-        if (track1.id != checkedTrack.id) {
+        if (track1.id != checkedTrack.id && track1.tempo && checkedTrack.tempo) {
           let score = calculateScore(track1, checkedTrack);
           recommendations.push({
             track1: checkedTrack,
