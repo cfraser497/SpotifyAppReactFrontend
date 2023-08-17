@@ -1,16 +1,38 @@
 .allTracksTitle {
     color:rgb(249, 180, 124);
     text-align: center;
-    margin-bottom: 1rem;
+    grid-column: 1/3;
+    grid-row: 1;
   }
   
-  .allTracksBox {
-    grid-column: 4; 
-  }
-  
-  .songlist {
-    width: 100%;
-    max-width: 41rem;
-    margin: 0%;
-    padding: 0%;
-  }
+.allTracksBox {
+  grid-column: 4; 
+}
+
+.songlist {
+  width: 100%;
+  max-width: 41rem;
+  margin: 0%;
+  padding: 0%;
+}
+
+.allTracksTitleBox{
+  display: grid;
+  grid-template-columns: 80% 20%;
+  grid-row: 1fr;
+  margin-bottom: 1rem;
+}
+
+.clearButton {
+  grid-column: 2;
+  grid-row: 1;
+  color:rgba(249, 211, 180, 1);
+  background: #1f2123;
+  border-radius: 2rem;
+  transition: 0.2s;
+}
+
+.clearButton:hover{
+  background: #1a1b1d;
+  transform: scale(1.1);
+}

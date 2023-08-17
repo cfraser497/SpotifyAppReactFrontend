@@ -64,6 +64,14 @@ function App() {
     setCheckedTrack(checked ? "" : id);
   }
 
+  function unCheckCheckedTrack() {
+    if (checkedTrack != "") {
+      const {track} = tracks.get(checkedTrack);
+      tracks.set(checkedTrack, {track: track, checked: false});
+      setCheckedTrack("");
+    }
+  }
+
   function onFilterModeValueSelected(filterModeValue: string) {
     setFilterModeValue(filterModeValue);
   }
@@ -168,6 +176,7 @@ function App() {
             <AllTracksBox
               filteredTracks={filteredTracks}
               handleChecked={handleChecked}
+              unCheckCheckedTrack={unCheckCheckedTrack}
             />
           </div>
         </>
