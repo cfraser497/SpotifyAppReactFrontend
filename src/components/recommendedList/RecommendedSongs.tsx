@@ -36,14 +36,15 @@ function RecommendedSongs(props: any) {
   }
 
   function calculateScore(
-    track1: { name: string; tempo: number; key: number; genres: string[] },
-    track2: { name: string; tempo: number; key: number; genres: string[] }
+    track1: { name: string; tempo: number; key: number; genres: string[]; mode: number },
+    track2: { name: string; tempo: number; key: number; genres: string[]; mode: number }
   ): number {
     const tempoScore = tempoWeight * Math.abs(track1.tempo - track2.tempo);
     const keyScore = keyWeight * Math.abs(track1.key - track2.key);
+    const modeScore = track1.mode == track2.mode ? 0 : 30;
     const genreScore = calculateGenreScore(track1, track2);
     // console.log(track1.name + " " + track1.genres + "\n" + track2.name + " " + track2.genres + ": " + (maxScore - tempoScore - keyScore - genreScore));
-    return maxScore - tempoScore - keyScore - genreScore;
+    return maxScore - tempoScore - keyScore - genreScore - modeScore;
   }
 
   function createRecommendations(filteredTracks: any[], checkedTrack: any) {
