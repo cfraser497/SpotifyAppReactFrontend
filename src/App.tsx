@@ -130,6 +130,7 @@ function App() {
   return (
     <div className="app">
       <h1>Spotify Playlist Tempo and Key Finder</h1>
+      <h6>By Another World</h6>
       <SocialIcons />
       <div className="search">
         <input
