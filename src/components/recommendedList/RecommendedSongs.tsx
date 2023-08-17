@@ -5,12 +5,14 @@ const maxScore = 100;
 const keyWeight = 3;
 const tempoWeight = 1;
 const genreWeight = 5;
+const energyWeight = 2;
 const defaultGenres = 3;
 //const sameArtistPenalty = 0.8;
 const tempoDiff = 4;
 const keyDiff = 1;
 
 function RecommendedSongs(props: any) {
+
   //returns the number of common genres between two ARTISTS (spotify API doesnt have genre information on songs)
   function calculateGenreScore(track1, track2): number {
     const track1Genres = track1.genres;
@@ -36,15 +38,16 @@ function RecommendedSongs(props: any) {
   }
 
   function calculateScore(
-    track1: { name: string; tempo: number; key: number; genres: string[]; mode: number },
-    track2: { name: string; tempo: number; key: number; genres: string[]; mode: number }
+    track1: { name: string; tempo: number; key: number; genres: string[]; mode: number, energy: number },
+    track2: { name: string; tempo: number; key: number; genres: string[]; mode: number, energy: number }
   ): number {
     const tempoScore = tempoWeight * Math.abs(track1.tempo - track2.tempo);
     const keyScore = keyWeight * Math.abs(track1.key - track2.key);
     const modeScore = track1.mode == track2.mode ? 0 : 30;
     const genreScore = calculateGenreScore(track1, track2);
-    // console.log(track1.name + " " + track1.genres + "\n" + track2.name + " " + track2.genres + ": " + (maxScore - tempoScore - keyScore - genreScore));
-    return maxScore - tempoScore - keyScore - genreScore - modeScore;
+    const energyScore = Math.round(energyWeight * 10 * Math.abs(track1.energy - track2.energy));
+
+    return maxScore - tempoScore - keyScore - genreScore - modeScore - energyScore;
   }
 
   function createRecommendations(filteredTracks: any[], checkedTrack: any) {
