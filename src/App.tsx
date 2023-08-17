@@ -8,6 +8,7 @@ import RecommendedSongs from "./components/recommendedList/RecommendedSongs";
 import { ClipLoader } from "react-spinners";
 import AllTracksBox from "./components/allTracksBox/AllTracksBox";
 import SocialIcons from "./components/socialIcons/socialIcons";
+import ScrollToTop from "react-scroll-to-top";
 
 function App() {
   const [playlistLink, setPlaylistLink] = useState("");
@@ -19,6 +20,8 @@ function App() {
   const [filterMaxTempo, setFilterMaxTempo] = useState("");
   const [loading, setLoading] = useState(false);
   const [invalidLink, setInvalidLink] = useState(false);
+
+  const scrollButtonSize = "25";
 
   const getSongs = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -169,6 +172,7 @@ function App() {
           </div>
         </>
       ) : null}
+      <ScrollToTop top={window.innerHeight} width={scrollButtonSize} height={scrollButtonSize} color="#1f2123" className="scrollButton"/>  
     </div>
   );
 }
