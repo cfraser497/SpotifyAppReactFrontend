@@ -146,7 +146,7 @@ function App() {
       <div className="search">
         <input
           value={playlistLink}
-          placeholder="Paste your Spotify playlist link here"
+          placeholder="Paste your Spotify public playlist link here"
           onChange={(e) => setPlaylistLink(e.target.value)}
         />
         {!loading ? (
