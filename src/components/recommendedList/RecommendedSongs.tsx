@@ -13,6 +13,8 @@ const tempoDiff = 6;
 const keyDiff = 2;
 const diffModePenalty = 30;
 
+const numKeys = 12;
+
 function RecommendedSongs(props: any) {
   //returns the number of common genres between two ARTISTS (spotify API doesnt have genre information on songs)
   function calculateGenreScore(track1, track2): number {
@@ -57,7 +59,15 @@ function RecommendedSongs(props: any) {
         Math.abs(track1.tempo * 2 - track2.tempo),
         Math.abs(track1.tempo - 2 * track2.tempo)
       );
-    const keyScore = Math.min(maxKeyScore, keyWeight ** Math.abs(track1.key - track2.key) - 1); //0 -> 0; 1 -> keyweight - 1; 2 -> keyweight^2 - 1
+    const keyScore = Math.min(
+      maxKeyScore,
+      keyWeight **
+        Math.min(
+          Math.abs(track1.key - track2.key),
+          Math.abs(track1.key - numKeys - track2.key),
+          Math.abs(track1.key + numKeys - track2.key)
+        ) - 1
+    ); //0 -> 0; 1 -> keyweight - 1; 2 -> keyweight^2 - 1
     const modeScore = track1.mode == track2.mode ? 0 : diffModePenalty;
     const genreScore = calculateGenreScore(track1, track2);
     const energyScore = Math.round(
@@ -79,10 +89,12 @@ function RecommendedSongs(props: any) {
           let track1 = filteredTracks[i];
           let track2 = filteredTracks[j];
           if (
-            Math.abs(track1.key - track2.key) <= keyDiff &&
-            (Math.abs(track1.tempo - track2.tempo) <= tempoDiff ||
-              Math.abs(track1.tempo * 2 - track2.tempo) <= tempoDiff ||
-              Math.abs(track1.tempo - track2.tempo * 2) <= tempoDiff) &&
+            Math.min(Math.abs(track1.key - track2.key),
+              Math.abs(track1.key - numKeys - track2.key),
+              Math.abs(track1.key + numKeys - track2.key)) <= keyDiff &&
+            Math.min(Math.abs(track1.tempo - track2.tempo),
+              Math.abs(track1.tempo * 2 - track2.tempo),
+              Math.abs(track1.tempo - track2.tempo * 2)) <= tempoDiff &&
             track1.mode == track2.mode
           ) {
             let score = calculateScore(track1, track2);
