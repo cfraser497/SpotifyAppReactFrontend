@@ -1,7 +1,6 @@
 .recommendedBox {
     list-style-type: none;
     width: 100%;
-    max-width: 40rem;
     justify-content: center;
     grid-column: 2;
 }
@@ -14,7 +13,6 @@
 
 .recommendedList {
     width: 100%;
-    max-width: 41rem;
     margin: 0%;
     padding: 0%;
   }

@@ -7,11 +7,7 @@
   
 .allTracksBox {
   grid-column: 4; 
-}
-
-.songlist {
   width: 100%;
-  max-width: 41rem;
   margin: 0%;
   padding: 0%;
 }
